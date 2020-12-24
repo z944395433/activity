@@ -74,7 +74,7 @@ public class ActivityTestController {
 
         Deployment deployment = repositoryService
                 .createDeployment()
-                .addClasspathResource("processes/demo.bpmn")
+                .addClasspathResource("time/定时任务.bpmn20")
                 .deploy();
 
         ProcessDefinition processDefinition = repositoryService
@@ -288,6 +288,11 @@ public class ActivityTestController {
 
     }
 
+    @GetMapping("/start/process/test")
+    public void startProcess(){
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("TimedTask");
+    }
+
 
     /**
      * 查询流程状态（判断流程走到哪一个节点）
@@ -307,6 +312,15 @@ public class ActivityTestController {
 //            log.info("节点id：" + pi.getActivityId());
 //        }
 //    }
+    public static void main(String[] args){
+        Map<String,Object> map = new HashMap<>();
+        List<String> a = new ArrayList<String>();
+        a.add("1");
+        map.put("list",a);
+        List<String> c = (List) map.get("list");
+        c.add("2");
+        System.out.println(a);
+    }
 
 
 
